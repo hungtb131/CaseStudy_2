@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="400.0" prefWidth="700.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AddItemController">
+   <children>
+      <AnchorPane prefHeight="102.0" prefWidth="700.0" style="-fx-background-color: #7f0000;">
+         <children>
+            <Label alignment="CENTER" layoutX="-105.0" layoutY="-7.0" prefHeight="82.0" prefWidth="554.0" text="Do it Later" textAlignment="CENTER" textFill="#e4d5d5" underline="true">
+               <font>
+                  <Font size="60.0" />
+               </font>
+            </Label>
+            <Label layoutX="216.0" layoutY="58.0" prefHeight="39.0" prefWidth="398.0" text="make you unable to forget anything">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label alignment="CENTER" layoutX="222.0" layoutY="180.0" prefHeight="53.0" prefWidth="288.0" text="Have no task today,yet">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="addButton" fitHeight="124.0" fitWidth="102.0" layoutX="299.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/baseline_add_box_black_48dp.png" />
+         </image>
+      </ImageView>
+   </children>
+</fx:root>
