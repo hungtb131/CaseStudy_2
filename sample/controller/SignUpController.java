@@ -61,4 +61,21 @@ public class SignUpController {
         assert signupCheckboxLGBT != null : "fx:id=\"signupCheckboxLGBT\" was not injected: check your FXML file 'signup.fxml'.";
 
     }
+    private void creatUser(){
+        String name = signupFirstname.getText();
+        String lastName = signupLastname.getText();
+        String userName = signupUserName.getText();
+        String password = signupPassword.getText();
+        String location = signupLocation.getText();
+        String gender = "";
+        if (signupCheckboxFemale.isSelected()){
+            gender = "Female";
+        }else if (signupCheckboxMale.isSelected()){
+            gender = "Male";
+        }else {
+            gender = "LGBT";
+        }
+
+    }
+
 }
