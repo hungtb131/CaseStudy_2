@@ -1,40 +1,62 @@
 package sample.model;
 
-public class Task {
-    private long dayCreated;
-    private String description;
+import java.io.Serializable;
+
+public class Task implements Serializable {
+    private String dayCreated;
+    private String deadline;
     private String taskContent;
+    private String status;
 
     public Task() {
     }
 
-    public Task(final long dayCreated, final String description, final String taskContent) {
+    public Task(String dayCreated, String deadline, String taskContent, String status) {
         this.dayCreated = dayCreated;
-        this.description = description;
+        this.deadline = deadline;
         this.taskContent = taskContent;
+        this.status = status;
     }
 
-    public long getDayCreated() {
+    public String getDayCreated() {
         return this.dayCreated;
     }
 
-    public void setDayCreated(final long dayCreated) {
+    public void setDayCreated(String dayCreated) {
         this.dayCreated = dayCreated;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getDeadline() {
+        return this.deadline;
     }
 
-    public void setDescription(final String description) {
-        this.description = description;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
     public String getTaskContent() {
         return this.taskContent;
     }
 
-    public void setTaskContent(final String taskContent) {
+    public void setTaskContent(String taskContent) {
         this.taskContent = taskContent;
+    }
+
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "dayCreated=" + dayCreated +
+                ", deadline='" + deadline + '\'' +
+                ", taskContent='" + taskContent + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,8 @@
 package sample.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String userName;
@@ -11,7 +13,7 @@ public class User {
     public User() {
     }
 
-    public User(final String firstName, final String lastName, final String userName, final String password, final String location, final String gender) {
+    public User(String firstName, String lastName, String userName, String password, String location, String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -24,7 +26,7 @@ public class User {
         return this.firstName;
     }
 
-    public void setFirstName(final String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
@@ -32,7 +34,7 @@ public class User {
         return this.lastName;
     }
 
-    public void setLastName(final String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -40,7 +42,7 @@ public class User {
         return this.userName;
     }
 
-    public void setUserName(final String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -48,7 +50,7 @@ public class User {
         return this.password;
     }
 
-    public void setPassword(final String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -56,7 +58,7 @@ public class User {
         return this.location;
     }
 
-    public void setLocation(final String location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -64,7 +66,19 @@ public class User {
         return this.gender;
     }
 
-    public void setGender(final String gender) {
+    public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", location='" + location + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
     }
 }
