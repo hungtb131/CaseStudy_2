@@ -116,6 +116,7 @@ public class TaskListController implements Initializable {
         newTask.setTiming(timingText.getText());
         newTask.setStatus(statusText.getText());
 
+        taskArrayList = taskManager.readFile();
         taskArrayList.add(newTask);
 
         taskManager.setTasklist(taskArrayList);
