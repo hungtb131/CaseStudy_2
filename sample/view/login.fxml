@@ -31,7 +31,7 @@
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor>
       </Label>
-      <Button fx:id="loginSignUpButton" layoutX="563.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #bf360c;" text="Sign up" textFill="WHITE" />
+      <Button fx:id="SignUpButton" layoutX="563.0" layoutY="20.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="113.0" style="-fx-background-color: #bf360c;" text="Sign up" textFill="WHITE" />
       <Label layoutX="110.0" layoutY="79.0" prefHeight="39.0" prefWidth="398.0" text="make you unable to forget anything">
          <font>
             <Font size="24.0" />

@@ -1,61 +1,124 @@
 package sample.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import sample.model.Task;
+import sample.model.TaskManager;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TaskListController {
+public class TaskListController implements Initializable {
+    @FXML
+    private TableView<Task> table;
 
     @FXML
-    private ResourceBundle resources;
+    private TableColumn<Task, Integer> numbOderColumn;
 
     @FXML
-    private URL location;
+    private TableColumn<Task, String> dateColumn;
 
     @FXML
-    private GridPane gridTaskList;
+    private TableColumn<Task, String> contentColumn;
 
     @FXML
-    private Label labelBacklog;
+    private TableColumn<Task, String> timingColumn;
 
     @FXML
-    private Label labelDone;
+    private TableColumn<Task, String> statusColumn;
+
+    private ObservableList<Task> taskList;
 
     @FXML
-    private Label labelReview;
+    private TextField numbOderText;
 
     @FXML
-    private Label labelDoing;
+    private TextField dateText;
 
     @FXML
-    private ListView<?> listBacklog;
+    private TextField contentText;
 
     @FXML
-    private ListView<?> listDoing;
+    private TextField timingText;
 
     @FXML
-    private ListView<?> listReview;
+    private TextField statusText;
 
     @FXML
-    private ListView<?> listDone;
+    private Button add;
 
     @FXML
-    void initialize() {
-        assert gridTaskList != null : "fx:id=\"gridTaskList\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert labelBacklog != null : "fx:id=\"labelBacklog\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert labelDone != null : "fx:id=\"labelDone\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert labelReview != null : "fx:id=\"labelReview\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert labelDoing != null : "fx:id=\"labelDoing\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert listBacklog != null : "fx:id=\"listBacklog\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert listDoing != null : "fx:id=\"listDoing\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert listReview != null : "fx:id=\"listReview\" was not injected: check your FXML file 'tasklist.fxml'.";
-        assert listDone != null : "fx:id=\"listDone\" was not injected: check your FXML file 'tasklist.fxml'.";
+    private Button del;
 
+    @FXML
+    private Button save;
+
+    private ArrayList<Task> taskArrayList = new ArrayList<>();
+
+    private String path = "C:\\Users\\hungt\\IdeaProjects\\JAVAFX_HelloWorld\\src\\sample\\data\\Tasklist.txt";
+
+    private TaskManager taskManager = new TaskManager(path);
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<Task> myTasklist = new ArrayList<>();
+        try {
+            myTasklist = taskManager.readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        taskList = FXCollections.observableArrayList(
+                myTasklist
+        );
+        numbOderColumn.setCellValueFactory(new PropertyValueFactory<Task,Integer>("numbOder"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Task,String>("dayCreated"));
+        contentColumn.setCellValueFactory(new PropertyValueFactory<Task,String>("taskContent"));
+        timingColumn.setCellValueFactory(new PropertyValueFactory<Task,String>("timing"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<Task, String>("status"));
+        table.setItems(taskList);
+    }
+
+    public void add (ActionEvent e){
+        Task newTask = new Task();
+        newTask.setNumbOder(Integer.parseInt(numbOderText.getText()));
+        newTask.setDayCreated(dateText.getText());
+        newTask.setTaskContent(contentText.getText());
+        newTask.setTiming(timingText.getText());
+        newTask.setStatus(statusText.getText());
+        taskList.add(newTask);
+    }
+
+    public void del (ActionEvent e){
+        Task selected = table.getSelectionModel().getSelectedItem();
+        taskList.remove(selected);
     }
 
 
+    public void save(ActionEvent actionEvent) throws IOException {
+        Task newTask = new Task();
+
+        String numOder = numbOderText.getText();
+        newTask.setNumbOder(Integer.parseInt(numOder));
+        newTask.setDayCreated(dateText.getText());
+        newTask.setTaskContent(contentText.getText());
+        newTask.setTiming(timingText.getText());
+        newTask.setStatus(statusText.getText());
+
+        taskArrayList.add(newTask);
+
+        taskManager.setTasklist(taskArrayList);
+        taskManager.wrireFile();
+    }
 }
